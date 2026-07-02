@@ -1,2 +1,2 @@
-# Bambu-Lab-Web
+# Extruo Web
 Web dashboard for Bambu Lab printers
