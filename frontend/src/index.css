@@ -20,9 +20,10 @@
   --color-bg-overlay: #3a3c42;
   --color-bg-float: #383a40;
 
+  --color-bg-green: #4ee1a01f;
+
   /* Borders */
   --color-border-subtle: #26272b;
-  --color-border-header: #26272b;
   --color-border: #34363c;
   --color-border-strong: #44464d;
 
@@ -79,6 +80,14 @@
     background 180ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 120ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility landing-intro-bg {
+  background: linear-gradient(135deg, #202127, #17181b);
+}
+
+@utility landing-intro-glow {
+  background: radial-gradient(600px 300px at 78% 40%, #4ee1a01f, transparent 70%);
 }
 
 
