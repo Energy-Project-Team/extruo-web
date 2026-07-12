@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/space-mono": "^5.2.9",
     "@tailwindcss/vite": "^4.3.2",
     "solid-js": "^1.9.13",
     "tailwindcss": "^4.3.2"

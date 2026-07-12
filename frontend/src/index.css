@@ -1,1 +1,109 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/800.css";
+@import "@fontsource/space-mono/400.css";
+
 @import "tailwindcss";
+
+@theme {
+  /* Backgrounds */
+  --color-bg-abyss: #17181b;
+  --color-bg-base: #1e1f22;
+  --color-bg-surface: #232428;
+  --color-bg-card: #2b2d31;
+  --color-bg-raised: #313338;
+  --color-bg-overlay: #3a3c42;
+  --color-bg-float: #383a40;
+
+  /* Borders */
+  --color-border-subtle: #26272b;
+  --color-border-header: #26272b;
+  --color-border: #34363c;
+  --color-border-strong: #44464d;
+
+  /* Texts */
+  --color-text-primary: #f2f3f5;
+  --color-text-secondary: #dbdee1;
+  --color-text-dimmed: #b5bac1;
+  --color-text-muted: #80848e;
+  --color-text-disabled: #5b5d64;
+  --color-text-on-accent: #ffffff;
+
+  /* Brand / primary */
+  --color-accent-indigo: #5865f2;
+  --color-accent-indigo-hover: #4752c4;
+  --color-accent-indigo-press: #3c45a5;
+
+  /* Action-green */
+  --color-accent-green: #4ee1a0;
+  --color-accent-green-hover: #3ecb8c;
+  --color-accent-green-dark: #0c221a;
+
+  /* Semantic */
+  --color-success: #23a55a;
+  --color-warning: #f0b232;
+  --color-danger: #f23f43;
+  --color-danger-hover: #d9363a;
+  --color-info: #5865f2;
+
+  /* Print-status semantic */
+  --color-status-printing: #4ee1a0;
+  --color-status-paused: #f0b232;
+  --color-status-error: #f23f43;
+  --color-status-idle: #80848e;
+  --color-status-heating: #ff7a45;
+
+  /* Fonts */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Letter spacing */
+  --tracking-snug: -0.005em;
+
+  /* Radii */
+  --radius-xs: 6px;
+  --radius-sm: 9px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+}
+
+@utility button-motion {
+  transition:
+    background 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 120ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+:root {
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.48);
+  --shadow-glow: 0 0 0 1px rgba(78, 225, 160, 0.25), 0 0 24px -4px rgba(78, 225, 160, 0.25);
+
+  /* Animations */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 280ms;
+}
+
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
