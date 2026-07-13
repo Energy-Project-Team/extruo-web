@@ -70,8 +70,8 @@ export default function LandingIntro(props: LandingIntroProps) {
 
       <img
         src={printerPreview}
+        alt="Bambu Lab A1 mini 3D printer shown from a front-three-quarter view"
         class="pointer-events-none absolute top-1/2 right-6 h-100 w-100 -translate-y-1/2 object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-        aria-hidden="true"
       />
     </section>
   );
