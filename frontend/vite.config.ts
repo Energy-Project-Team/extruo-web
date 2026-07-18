@@ -5,7 +5,26 @@ import tailwindcss from '@tailwindcss/vite'
 import solidSvg from "vite-plugin-solid-svg";
 
 export default defineConfig({
-  plugins: [solid(), tailwindcss(), solidSvg()],
+  plugins: [
+    solid(),
+    tailwindcss(),
+    solidSvg({
+      svgo: {
+        svgoConfig: {
+          plugins: [
+            {
+              name: "preset-default",
+              params: {
+                overrides: {
+                  removeViewBox: false,
+                },
+              },
+            },
+          ],
+        },
+      },
+    }),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
