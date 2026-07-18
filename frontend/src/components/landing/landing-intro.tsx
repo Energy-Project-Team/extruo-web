@@ -22,14 +22,14 @@ const features = [
 
 export default function LandingIntro(props: LandingIntroProps) {
   return (
-    <section class="relative min-h-105 overflow-hidden rounded-xl border border-border landing-intro-bg p-10">
+    <section class="relative overflow-hidden rounded-xl border border-border landing-intro-bg p-6 md:p-10 lg:min-h-105">
       <div class="relative max-w-155">
         <div class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-transparent bg-bg-green px-2.5 py-1 text-xs leading-[1.4] font-semibold tracking-[0.01em] text-accent-green">
           <span class="h-1.5 w-1.5 rounded-full bg-accent-green" />
           Bambu Lab A1 Mini
         </div>
 
-        <h1 class="mt-4 mb-5 text-[40px] leading-[1.15] font-bold tracking-snug text-text-primary">
+        <h1 class="mt-4 mb-5 text-[28px] leading-[1.2] font-bold tracking-snug text-text-primary md:text-[40px] md:leading-[1.15]">
           Веб-панель для управления печатью
         </h1>
 
@@ -44,10 +44,11 @@ export default function LandingIntro(props: LandingIntroProps) {
           </For>
         </ul>
 
-        <div class="mt-7 flex gap-3">
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
           <Button
             variant="action"
             size="md"
+            class="w-full sm:w-auto"
             onClick={props.onLogin}
             leadingIcon={<RunIcon aria-hidden="true" />}
           >
@@ -57,6 +58,7 @@ export default function LandingIntro(props: LandingIntroProps) {
           <Button
             variant="outline"
             size="md"
+            class="w-full sm:w-auto"
             leadingIcon={<GitHubIcon class="text-white" aria-hidden="true"/>}
             onClick={() => window.open("https://github.com/Energy-Project-Team/extruo-web", "_blank")}
           >
@@ -71,7 +73,7 @@ export default function LandingIntro(props: LandingIntroProps) {
       <img
         src={printerPreview}
         alt="Bambu Lab A1 mini 3D printer shown from a front-three-quarter view"
-        class="relative h-full w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+        class="invisible relative h-full w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] lg:visible"
       />
     </div>
 

@@ -10,7 +10,7 @@ type HeaderProps = {
 
 export default function landingHeader(props: HeaderProps) {
   return (
-    <header class="sticky top-0 z-50 flex h-18 items-center justify-between border-b border-border-subtle bg-bg-surface px-10">
+    <header class="sticky top-0 z-50 flex h-18 items-center justify-between border-b border-border-subtle bg-bg-surface px-6 md:px-10">
       <Logo />
       <Button variant="primary" size="md" onClick={props.onLogin}>
         Войти
