@@ -23,8 +23,6 @@ const features = [
 export default function LandingIntro(props: LandingIntroProps) {
   return (
     <section class="relative min-h-105 overflow-hidden rounded-xl border border-border landing-intro-bg p-10">
-      <div class="pointer-events-none absolute inset-0 landing-intro-glow" />
-
       <div class="relative max-w-155">
         <div class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-transparent bg-bg-green px-2.5 py-1 text-xs leading-[1.4] font-semibold tracking-[0.01em] text-accent-green">
           <span class="h-1.5 w-1.5 rounded-full bg-accent-green" />
@@ -68,11 +66,15 @@ export default function LandingIntro(props: LandingIntroProps) {
         </div>
       </div>
 
+    <div class="pointer-events-none absolute top-1/2 right-6 h-100 w-100 -translate-y-1/2">
+      <div class="absolute -inset-48 landing-intro-glow" />
       <img
         src={printerPreview}
         alt="Bambu Lab A1 mini 3D printer shown from a front-three-quarter view"
-        class="pointer-events-none absolute top-1/2 right-6 h-100 w-100 -translate-y-1/2 object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+        class="relative h-full w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
       />
+    </div>
+
     </section>
   );
 }
