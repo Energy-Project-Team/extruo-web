@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // Copyright (C) 2026 Energy Project Team
 
-import { createSignal } from 'solid-js';
+import { createSignal, createMemo } from 'solid-js';
 import type { Translation, DeepPartial, TranslationKey } from './types';
 
 
@@ -16,6 +16,9 @@ for (const path in modules) {
     const lang = path.split('/').pop()!.replace('.ts', '');
     locales[lang] = modules[path].default as DeepPartial<Translation>; // type casting
 }
+
+/** Locale codes available for selection, auto-derived from files in `./locales/`. */
+export const AVAILABLE_LOCALES: readonly string[] = Object.keys(locales).sort();
 
 
 // ---------- Localization Tools ----------
@@ -63,29 +66,43 @@ function normalizeLocale(rawLocale: string): string {
     return DEFAULT_LOCALE;
 }
 
+/** Resolves the browser's language to a supported locale key. */
+function getSystemLocale(): string {
+    return normalizeLocale(navigator.language);
+}
+
 /**
- * Determines the initial locale by checking localStorage for a saved value,
- * then falling back to the browser's language normalized via `normalizeLocale`.
+ * Determines the initial raw locale choice by checking localStorage for a saved
+ * value, falling back to `system` (i.e. track the browser language) if none is
+ * saved or it no longer matches an available locale.
  */
 function getInitialLocale(): string {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved !== null && saved in locales) return saved;
 
-    return normalizeLocale(navigator.language);
+    return 'system';
 }
 
-const [locale, setLocale] = createSignal<string>(getInitialLocale());
+const [userLocale, setUserLocale] = createSignal<string>(getInitialLocale());
+const [systemLocale, setSystemLocale] = createSignal<string>(getSystemLocale());
 
-/** Sets the active locale and persists the choice in localStorage. */
-function selectLocale(lang: string): void {
-    setLocale(lang);
-    localStorage.setItem(STORAGE_KEY, lang);
+window.addEventListener('languagechange', () => setSystemLocale(getSystemLocale()));
+
+const resolvedLocale = createMemo<string>(() => {
+    const current = userLocale();
+    return current === 'system' ? systemLocale() : current;
+});
+
+/** Sets the active locale and persists the choice in localStorage (`system` clears it). */
+function selectLocale(choice: string): void {
+    setUserLocale(choice);
+    if (choice === 'system') localStorage.removeItem(STORAGE_KEY);
+    else localStorage.setItem(STORAGE_KEY, choice);
 }
 
-/** Removes the saved locale from localStorage and reverts to the system locale. */
+/** Removes the saved locale from localStorage and reverts to tracking the system language. */
 function resetToSystemLocale(): void {
-    localStorage.removeItem(STORAGE_KEY);
-    setLocale(normalizeLocale(navigator.language));
+    selectLocale('system');
 }
 
 
@@ -93,12 +110,12 @@ function resetToSystemLocale(): void {
 
 /**
  * Returns a tuple containing:
- * - `t`: a translation function bound to the current reactive locale.
+ * - `t`: a translation function bound to the current reactive (resolved) locale.
  * - `selectLocale`: function to change the locale.
- * - `locale`: a signal holding the current locale.
- * - `resetToSystemLocale`: function to reset to system locale.
+ * - `locale`: a signal holding the raw user selection (may be `system`).
+ * - `resetToSystemLocale`: function to reset to tracking the system language.
  */
 export function useI18n() {
-    const t = (key: TranslationKey, params?: Record<string, string | number>) => translate(locale(), key, params);
-    return [t, selectLocale, locale, resetToSystemLocale] as const;
+    const t = (key: TranslationKey, params?: Record<string, string | number>) => translate(resolvedLocale(), key, params);
+    return [t, selectLocale, userLocale, resetToSystemLocale] as const;
 }
