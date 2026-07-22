@@ -6,21 +6,25 @@ import RunIcon from "@/assets/icons/run.svg?component-solid";
 import GitHubIcon from "@/assets/icons/mark-github-24.svg?component-solid";
 import printerPreview from "@/assets/printer-prev.png";
 import { Button, type ButtonProps } from "../ui/buttons/simple-button";
+import { useI18n } from "@/services/i18n";
+import type { TranslationKey } from "@/services/i18n/types";
 
 type LandingIntroProps = {
   onLogin?: ButtonProps["onClick"];
 };
 
-const features = [
-  "Специально разработана для принтеров Bambu Lab",
-  "Полный контроль над процессом печати в реальном времени",
-  "Мониторинг температуры, скорости и расхода материала",
-  "Удалённое управление и планирование задач печати",
-  "Интеграция с облачным хранилищем проектов",
-  "Система верификации пользователей",
+const featureKeys: TranslationKey[] = [
+  "intro.feature_printer_specific",
+  "intro.feature_realtime_control",
+  "intro.feature_monitoring",
+  "intro.feature_remote_management",
+  "intro.feature_cloud_integration",
+  "intro.feature_user_verification",
 ];
 
 export default function LandingIntro(props: LandingIntroProps) {
+  const [t] = useI18n();
+
   return (
     <section class="relative overflow-hidden rounded-xl border border-border landing-intro-bg p-6 md:p-10 lg:min-h-105">
       <div class="relative max-w-155">
@@ -30,15 +34,15 @@ export default function LandingIntro(props: LandingIntroProps) {
         </div>
 
         <h1 class="mt-4 mb-5 text-[28px] leading-[1.2] font-bold tracking-snug text-text-primary md:text-[40px] md:leading-[1.15]">
-          Веб-панель для управления печатью
+          {t("intro.heading")}
         </h1>
 
         <ul class="m-0 flex list-none flex-col gap-2.5 p-0">
-          <For each={features}>
-            {(feature) => (
+          <For each={featureKeys}>
+            {(featureKey) => (
               <li class="flex items-start gap-2.5 font-mono text-[15px] tracking-[0.01em] text-text-dimmed">
                 <span class="shrink-0 text-accent-green">›</span>
-                <span>{feature}</span>
+                <span>{t(featureKey)}</span>
               </li>
             )}
           </For>
@@ -52,7 +56,7 @@ export default function LandingIntro(props: LandingIntroProps) {
             onClick={props.onLogin}
             leadingIcon={<RunIcon aria-hidden="true" />}
           >
-            Открыть панель
+            {t("intro.open_dashboard_button")}
           </Button>
 
           <Button
@@ -62,7 +66,7 @@ export default function LandingIntro(props: LandingIntroProps) {
             leadingIcon={<GitHubIcon aria-hidden="true"/>}
             onClick={() => window.open("https://github.com/Energy-Project-Team/extruo-web", "_blank")}
           >
-            Исходный код
+            {t("intro.source_code_button")}
           </Button>
 
         </div>
@@ -72,7 +76,7 @@ export default function LandingIntro(props: LandingIntroProps) {
       <div class="absolute -inset-48 landing-intro-glow" />
       <img
         src={printerPreview}
-        alt="Bambu Lab A1 mini 3D printer shown from a front-three-quarter view"
+        alt={t("intro.printer_alt")}
         class="invisible relative h-full w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] lg:visible"
       />
     </div>

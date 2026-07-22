@@ -3,29 +3,32 @@
 
 import { For } from "solid-js";
 import BoltIcon from "@/assets/icons/bolt.svg?component-solid";
+import { useI18n } from "@/services/i18n";
+import type { TranslationKey } from "@/services/i18n/types";
 
 interface InfoBlock {
-  title: string;
-  description: string;
+  titleKey: TranslationKey;
+  descriptionKey: TranslationKey;
 }
 
 const infoBlocks: InfoBlock[] = [
   {
-    title: "Реальное время",
-    description: "Живой поток камеры, температуры и G-code без задержек.",
+    titleKey: "features.realtime_title",
+    descriptionKey: "features.realtime_description",
   },
   {
-    title: "Облачные проекты",
-    description:
-      "Загружайте .3mf и .gcode, ставьте в очередь и печатайте из любой точки.",
+    titleKey: "features.cloud_title",
+    descriptionKey: "features.cloud_description",
   },
   {
-    title: "Безопасность",
-    description: "Верификация пользователей и журнал всех операций принтера.",
+    titleKey: "features.security_title",
+    descriptionKey: "features.security_description",
   },
 ];
 
 export default function Features() {
+  const [t] = useI18n();
+
   return (
     <section class="grid grid-cols-1 gap-4 rounded-xl border border-border bg-bg-card p-6 md:gap-5 md:p-10 md:grid-cols-3">
       <For each={infoBlocks}>
@@ -35,10 +38,10 @@ export default function Features() {
               <BoltIcon class="text-accent-green h-5 w-5" aria-hidden="true" />
             </div>
             <h2 class="mt-1.5 text-lg font-semibold text-text-primary">
-              {block.title}
+              {t(block.titleKey)}
             </h2>
             <p class="text-sm leading-relaxed text-text-muted">
-              {block.description}
+              {t(block.descriptionKey)}
             </p>
           </div>
         )}

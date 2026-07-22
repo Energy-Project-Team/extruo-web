@@ -8,16 +8,16 @@ import CheckIcon from "@/assets/icons/check.svg?component-solid";
 
 const OPTIONS: readonly string[] = ["system", ...AVAILABLE_LOCALES];
 
-/** Renders a locale code as its native language name (e.g. "ru-RU" -> "русский"). */
-function localeLabel(code: string): string {
-  if (code === "system") return "Системный";
-
-  const name = new Intl.DisplayNames([code], { type: "language" }).of(code) ?? code;
-  return name.charAt(0).toUpperCase() + name.slice(1);
-}
-
 export function LanguageSwitcher() {
-  const [, selectLocale, locale] = useI18n();
+  const [t, selectLocale, locale] = useI18n();
+
+  /** Renders a locale code as its native language name (e.g. "ru-RU" -> "русский"). */
+  const localeLabel = (code: string): string => {
+    if (code === "system") return t("language_switcher.system_label");
+
+    const name = new Intl.DisplayNames([code], { type: "language" }).of(code) ?? code;
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  };
   const [open, setOpen] = createSignal(false);
 
   let containerRef: HTMLDivElement | undefined;
@@ -53,7 +53,7 @@ export function LanguageSwitcher() {
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open()}
-        aria-label="Сменить язык"
+        aria-label={t("language_switcher.toggle_aria_label")}
         onClick={() => setOpen(!open())}
         class={[
           "button-motion inline-flex h-10 w-10 items-center justify-center rounded-md",
@@ -67,7 +67,7 @@ export function LanguageSwitcher() {
       <Show when={open()}>
         <ul
           role="listbox"
-          aria-label="Язык"
+          aria-label={t("language_switcher.listbox_aria_label")}
           class="absolute top-[calc(100%+8px)] right-0 z-50 max-h-64 w-56 overflow-y-auto overscroll-contain rounded-md border border-border bg-bg-card py-1 shadow-lg"
         >
           <For each={OPTIONS}>

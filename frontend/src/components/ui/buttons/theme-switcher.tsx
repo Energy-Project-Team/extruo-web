@@ -7,16 +7,19 @@ import type { Theme } from "@/services/theme/types";
 import { THEMES } from "@/services/theme/types";
 import ThemeIcon from "@/assets/icons/theme.svg?component-solid";
 import CheckIcon from "@/assets/icons/check.svg?component-solid";
+import { useI18n } from "@/services/i18n";
+import type { TranslationKey } from "@/services/i18n/types";
 
-const THEME_LABELS: Record<Theme, string> = {
-  system: "Системная",
-  light: "Светлая",
-  dark: "Тёмная",
-  "light-contrast": "Светлая контрастная",
-  "dark-contrast": "Тёмная контрастная",
+const THEME_LABEL_KEYS: Record<Theme, TranslationKey> = {
+  system: "theme_switcher.system_label",
+  light: "theme_switcher.light_label",
+  dark: "theme_switcher.dark_label",
+  "light-contrast": "theme_switcher.light_contrast_label",
+  "dark-contrast": "theme_switcher.dark_contrast_label",
 };
 
 export function ThemeSwitcher() {
+  const [t] = useI18n();
   const [, selectTheme, theme] = useTheme();
   const [open, setOpen] = createSignal(false);
 
@@ -53,7 +56,7 @@ export function ThemeSwitcher() {
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open()}
-        aria-label="Сменить тему оформления"
+        aria-label={t("theme_switcher.toggle_aria_label")}
         onClick={() => setOpen(!open())}
         class={[
           "button-motion inline-flex h-10 w-10 items-center justify-center rounded-md",
@@ -67,7 +70,7 @@ export function ThemeSwitcher() {
       <Show when={open()}>
         <ul
           role="listbox"
-          aria-label="Тема оформления"
+          aria-label={t("theme_switcher.listbox_aria_label")}
           class="absolute top-[calc(100%+8px)] right-0 z-50 w-56 overflow-hidden rounded-md border border-border bg-bg-card py-1 shadow-lg"
         >
           <For each={THEMES}>
@@ -86,7 +89,7 @@ export function ThemeSwitcher() {
                       active() ? "text-text-primary" : "text-text-secondary",
                     ].join(" ")}
                   >
-                    {THEME_LABELS[value]}
+                    {t(THEME_LABEL_KEYS[value])}
                     <Show when={active()}>
                       <CheckIcon class="h-4 w-4 shrink-0 text-accent-indigo" aria-hidden="true" />
                     </Show>

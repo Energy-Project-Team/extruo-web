@@ -9,6 +9,44 @@ export interface Translation {
     header: {
         login_button: string;
     };
+    footer: {
+        copyright: string;
+        disclaimer: string;
+    };
+    features: {
+        realtime_title: string;
+        realtime_description: string;
+        cloud_title: string;
+        cloud_description: string;
+        security_title: string;
+        security_description: string;
+    };
+    intro: {
+        heading: string;
+        printer_alt: string;
+        open_dashboard_button: string;
+        source_code_button: string;
+        feature_printer_specific: string;
+        feature_realtime_control: string;
+        feature_monitoring: string;
+        feature_remote_management: string;
+        feature_cloud_integration: string;
+        feature_user_verification: string;
+    };
+    language_switcher: {
+        system_label: string;
+        toggle_aria_label: string;
+        listbox_aria_label: string;
+    };
+    theme_switcher: {
+        system_label: string;
+        light_label: string;
+        dark_label: string;
+        light_contrast_label: string;
+        dark_contrast_label: string;
+        toggle_aria_label: string;
+        listbox_aria_label: string;
+    };
 }
 
 

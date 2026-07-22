@@ -5,12 +5,15 @@ import { Logo } from "../logo";
 import { Button, type ButtonProps } from "../ui/buttons/simple-button";
 import { ThemeSwitcher } from "../ui/buttons/theme-switcher";
 import { LanguageSwitcher } from "../ui/buttons/language-switcher";
+import { useI18n } from "@/services/i18n";
 
 type HeaderProps = {
   onLogin?: ButtonProps["onClick"];
 };
 
 export default function landingHeader(props: HeaderProps) {
+  const [t] = useI18n();
+
   return (
     <header class="sticky top-0 z-50 flex h-18 items-center justify-between border-b border-border-subtle bg-bg-surface px-6 md:px-10">
       <Logo />
@@ -18,7 +21,7 @@ export default function landingHeader(props: HeaderProps) {
         <LanguageSwitcher />
         <ThemeSwitcher />
         <Button variant="primary" size="md" onClick={props.onLogin}>
-          Войти
+          {t("header.login_button")}
         </Button>
       </div>
     </header>
