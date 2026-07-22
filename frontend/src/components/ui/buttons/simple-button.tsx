@@ -44,7 +44,7 @@ const variantClasses: Record<Variant, string> = {
 };
 
 const focusOutlineClasses: Record<Variant, string> = {
-  primary: "focus-visible:outline-white",
+  primary: "focus-visible:outline-accent-indigo",
   action: "focus-visible:outline-accent-indigo",
   secondary: "focus-visible:outline-accent-indigo",
   ghost: "focus-visible:outline-accent-indigo",
