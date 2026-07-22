@@ -83,22 +83,16 @@
 }
 
 @utility landing-intro-bg {
-  background: linear-gradient(135deg, #202127, #17181b);
+  background: linear-gradient(135deg, var(--landing-gradient-from), var(--landing-gradient-to));
 }
 
 @utility landing-intro-glow {
-  background: radial-gradient(600px 300px at 55% 40%, #4ee1a01f, transparent 70%);
+  background: radial-gradient(600px 300px at 55% 40%, var(--landing-glow-color), transparent 70%);
 }
 
 
 :root {
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.48);
-  --shadow-glow: 0 0 0 1px rgba(78, 225, 160, 0.25), 0 0 24px -4px rgba(78, 225, 160, 0.25);
-
-  /* Animations */
+  /* Animations (theme-independent) */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --duration-fast: 120ms;
@@ -109,6 +103,184 @@
 
 :root {
   color-scheme: dark;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.48);
+  --shadow-glow: 0 0 0 1px rgba(78, 225, 160, 0.25), 0 0 24px -4px rgba(78, 225, 160, 0.25);
+
+  --landing-gradient-from: #202127;
+  --landing-gradient-to: #17181b;
+  --landing-glow-color: #4ee1a01f;
+}
+
+/* ---------- Light ---------- */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg-abyss: #e7e9ec;
+  --color-bg-base: #f4f5f7;
+  --color-bg-surface: #fafafb;
+  --color-bg-card: #ffffff;
+  --color-bg-raised: #ffffff;
+  --color-bg-overlay: #ffffff;
+  --color-bg-float: #ffffff;
+
+  --color-bg-green: #0596691a;
+
+  --color-border-subtle: #e5e7eb;
+  --color-border: #d8dbe0;
+  --color-border-strong: #c3c7ce;
+
+  --color-text-primary: #14151a;
+  --color-text-secondary: #34363c;
+  --color-text-dimmed: #5b5d64;
+  --color-text-muted: #767981;
+  --color-text-disabled: #a0a3ab;
+  --color-text-on-accent: #ffffff;
+
+  --color-accent-indigo: #4f46e5;
+  --color-accent-indigo-hover: #4338ca;
+  --color-accent-indigo-press: #3730a3;
+
+  --color-accent-green: #059669;
+  --color-accent-green-hover: #047857;
+  --color-accent-green-dark: #0c221a;
+
+  --color-success: #16a34a;
+  --color-warning: #b45309;
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-info: #4f46e5;
+
+  --color-status-printing: #059669;
+  --color-status-paused: #b45309;
+  --color-status-error: #dc2626;
+  --color-status-idle: #767981;
+  --color-status-heating: #ea580c;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 32, 0.08);
+  --shadow-md: 0 4px 12px rgba(16, 24, 32, 0.1);
+  --shadow-lg: 0 12px 32px rgba(16, 24, 32, 0.14);
+  --shadow-glow: 0 0 0 1px rgba(5, 150, 105, 0.25), 0 0 24px -4px rgba(5, 150, 105, 0.25);
+
+  --landing-gradient-from: #eef1f4;
+  --landing-gradient-to: #e3e6ea;
+  --landing-glow-color: #0596691f;
+}
+
+/* ---------- Light, high contrast (WCAG AAA) ---------- */
+[data-theme="light-contrast"] {
+  color-scheme: light;
+
+  --color-bg-abyss: #ffffff;
+  --color-bg-base: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-bg-raised: #ffffff;
+  --color-bg-overlay: #ffffff;
+  --color-bg-float: #ffffff;
+
+  --color-bg-green: #dcefe8;
+
+  --color-border-subtle: #949aa3;
+  --color-border: #5b6068;
+  --color-border-strong: #1f2126;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #14151a;
+  --color-text-dimmed: #2c2e33;
+  --color-text-muted: #46484e;
+  --color-text-disabled: #6b6e75;
+  --color-text-on-accent: #ffffff;
+
+  --color-accent-indigo: #3730a3;
+  --color-accent-indigo-hover: #312e81;
+  --color-accent-indigo-press: #1e1b4b;
+
+  --color-accent-green: #065f46;
+  --color-accent-green-hover: #064e3b;
+  --color-accent-green-dark: #000000;
+
+  --color-success: #14532d;
+  --color-warning: #78350f;
+  --color-danger: #7f1d1d;
+  --color-danger-hover: #991b1b;
+  --color-info: #3730a3;
+
+  --color-status-printing: #065f46;
+  --color-status-paused: #78350f;
+  --color-status-error: #7f1d1d;
+  --color-status-idle: #46484e;
+  --color-status-heating: #7c2d12;
+
+  /* No blur/glow - elevation is carried entirely by solid 1px rings. */
+  --shadow-sm: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 0 0 1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 0 0 1px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 2px #065f46;
+
+  --landing-gradient-from: #ffffff;
+  --landing-gradient-to: #ffffff;
+  --landing-glow-color: transparent;
+}
+
+/* ---------- Dark, high contrast (WCAG AAA) ---------- */
+[data-theme="dark-contrast"] {
+  color-scheme: dark;
+
+  --color-bg-abyss: #000000;
+  --color-bg-base: #000000;
+  --color-bg-surface: #0a0a0b;
+  --color-bg-card: #000000;
+  --color-bg-raised: #0a0a0b;
+  --color-bg-overlay: #000000;
+  --color-bg-float: #000000;
+
+  --color-bg-green: #062219;
+
+  --color-border-subtle: #45484f;
+  --color-border: #6b6f78;
+  --color-border-strong: #9aa0aa;
+
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #f0f1f3;
+  --color-text-dimmed: #d7d9dd;
+  --color-text-muted: #b7bac0;
+  --color-text-disabled: #8b8e96;
+  /* Accent colors below are bright/light-valued for AAA, so text sitting on
+     them needs to be black here, unlike the other three (white-text) themes. */
+  --color-text-on-accent: #000000;
+
+  --color-accent-indigo: #8b93ff;
+  --color-accent-indigo-hover: #767eff;
+  --color-accent-indigo-press: #6169e6;
+
+  --color-accent-green: #22e0a0;
+  --color-accent-green-hover: #17c98f;
+  --color-accent-green-dark: #000000;
+
+  --color-success: #34eea3;
+  --color-warning: #ffcf5c;
+  --color-danger: #ff8785;
+  --color-danger-hover: #ff6b68;
+  --color-info: #8b93ff;
+
+  --color-status-printing: #22e0a0;
+  --color-status-paused: #ffcf5c;
+  --color-status-error: #ff8785;
+  --color-status-idle: #b7bac0;
+  --color-status-heating: #ffab6b;
+
+  /* No blur/glow - elevation is carried entirely by solid 1px rings. */
+  --shadow-sm: 0 0 0 1px rgba(255, 255, 255, 0.5);
+  --shadow-md: 0 0 0 1px rgba(255, 255, 255, 0.6);
+  --shadow-lg: 0 0 0 1px rgba(255, 255, 255, 0.7);
+  --shadow-glow: 0 0 0 2px #22e0a0;
+
+  --landing-gradient-from: #000000;
+  --landing-gradient-to: #000000;
+  --landing-glow-color: transparent;
 }
 
 body {
