@@ -40,6 +40,13 @@ function applyThemeAttribute(resolved: ResolvedTheme): void {
     document.documentElement.style.colorScheme = resolved.startsWith('dark') ? 'dark' : 'light'; // for browser
 }
 
+/** Swaps the <link id="favicon"> href to match the resolved theme (dark vs. light artwork). */
+function applyFavicon(resolved: ResolvedTheme): void {
+    const favicon = document.getElementById('favicon') as HTMLLinkElement | null;
+    if (!favicon) return;
+    favicon.href = resolved.startsWith('dark') ? '/public/favicon-dark.svg' : '/public/favicon-light.svg';
+}
+
 // Wrapped in a `createRoot` that is never disposed: this is a singleton store meant
 // to live for the whole app lifetime, not a component-scoped computation.
 const { theme, resolvedTheme, setTheme } = createRoot(() => {
@@ -57,6 +64,7 @@ const { theme, resolvedTheme, setTheme } = createRoot(() => {
     });
 
     createEffect(() => applyThemeAttribute(resolvedTheme()));
+    createEffect(() => applyFavicon(resolvedTheme()));
 
     return { theme: userTheme, resolvedTheme, setTheme: setUserTheme };
 });
