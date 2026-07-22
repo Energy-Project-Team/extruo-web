@@ -59,7 +59,7 @@ export default function LandingIntro(props: LandingIntroProps) {
             variant="outline"
             size="md"
             class="w-full sm:w-auto"
-            leadingIcon={<GitHubIcon class="text-white" aria-hidden="true"/>}
+            leadingIcon={<GitHubIcon aria-hidden="true"/>}
             onClick={() => window.open("https://github.com/Energy-Project-Team/extruo-web", "_blank")}
           >
             Исходный код
